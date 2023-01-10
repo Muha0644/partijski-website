@@ -4,14 +4,14 @@
 
 
 <nav class="navbar">
+	<a href="/"><img src="CommunistPartyofCanadalogo_2018.png" draggable="false" height="75rem"></a>
 	<ul>
-		<li><img src="CommunistPartyofCanadalogo_2018.png" draggable="false" height="100vh"></li>
-		<li><a href="blog">Blog</a></li>
-		<li><a href="manifesto">Knjige</a></li>
-		<li>bruh moment</li>
-		<li>bruh moment</li>
-		<li>bruh moment</li>
-		<li>bruh moment</li>
+		<li><button><a href="blog">Blog</a></button></li>
+		<li><button><a href="knjige">Knjige</a></button></li>
+		<li><button>bruh moment</button></li>
+		<li><button>bruh moment that is very long</button></li>
+		<li><button>bruh moment</button></li>
+		<li><button>bruh moment</button></li>
 	</ul>
 </nav>
 
@@ -20,25 +20,33 @@
 		padding: 0.5rem;
 		list-style: none;
 	}
-	li {
-		color: #ffa;
-		align-content: center;
+	button{
+		font-size: 0.9rem;
+		color: var(--link);
 		border: 1px solid #aaa2;
-		border-radius: 0.25rem;
-		background-color: #251019;
-		margin-bottom: 2rem;
+		border-radius: 0.25em;
+		background-color: #710318;
+		width: 100%;
+	}
+	li {
+		margin-bottom: 1rem;
+		padding: 0.25em;
 		text-align: center;
 	}
 	a {
-		color: #ffa;
+		color: var(--link);
 		text-decoration: none;
 	}
 	.navbar {
+		text-align: center;
+		width: 10rem;
 		border-radius: 0.25em;
 		position: absolute;
 		height: calc(100vh - 1rem);
 		float: right;
-		background-color: #251010;
-		
+		background-color: #251019;
+	}
+	img {
+		margin-top: 1rem;
 	}
 </style>
