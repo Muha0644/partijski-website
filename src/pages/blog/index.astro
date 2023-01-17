@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+interface blog {
+	title: string;
+	body: string;
+	author: string;
+	date: Date;
+	//images?:Array<string>
+}
+
+var bloglist: Array<blog> = [
+	{title: "testblog",
+		body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero dolor, sodales non lectus ac, vehicula pretium nibh. Quisque vitae erat nunc. Fusce faucibus sem quam, et blandit nisl sollicitudin sagittis.",
+		author: "Muhamed",
+		date: new Date("2023-01-17@12:25"),
+	},
+];
+---
+
+<Layout title="Blog">
+	<main>
+		{bloglist.map((blog) => (
+				<div class="blog">
+					<h2>{blog.title}</h2><h4>{blog.author} {blog.date}</h4>
+					<p>{blog.body}</p>
+				</div>
+			))}
+	</main>
+</Layout>
+<style>
+	main {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		/* RAM - repeat auto *** - da bude responsive */ 
+	}
+	.blog {
+		background-color: var(--bg);
+		padding: 1em;
+		border-radius: 0.2em;
+		transition: 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+	}
+	.blog:hover{
+		background-color: var(--focus);
+		transition: 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+	}
+</style>
