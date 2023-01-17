@@ -1,0 +1,64 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+interface book{
+	title:string,
+	authors:string,
+	desc:string,
+	link:string
+}
+
+// garant ću koristiti graphql, ali sad za sad placeholder dok backend ne bude radio
+//var booklist = await fetch("placeholder").then(res => res.json())
+const booklist:Array<book> = [
+	{title: "Towards a New Socialism",
+		authors: "W. P. Cockshott, A. Cottrell",
+		desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero dolor,sodales non lectus ac, vehicula pretium nibh. Quisque vitae erat nunc. Fusce faucibus sem quam, et blandit nisl sollicitudin sagittis.",
+		link: "//"},
+	{title: "Kapital",
+		authors: "K. Marx, F. Engels",
+		desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero dolor, sodales non lectus ac, vehicula pretium nibh. Quisque vitae erat nunc. Fusce faucibus sem quam, et blandit nisl sollicitudin sagittis.",
+		link: "//"}
+	]
+---
+
+<Layout title="Knjige">
+	<main>
+		<table>
+			{booklist.map( (book) =>
+				<tr>
+					<td>
+						<h4><bold>{book.title}</bold> - ({book.authors})</h4>
+						<p>{book.desc}</p>
+					</td>
+					<td><a href={book.link}>Download</a></td>
+				</tr>)}
+		</table>
+	</main>
+</Layout>
+
+<style>
+	a {
+		padding: 0em 1em;
+		color: var(--link)
+	}
+	h4 {
+		color: var(--title);
+	}
+	p {
+		font-size: 0.9em;
+		padding-left: 1em;
+	}
+	table {
+		width: 100%;
+		background-color: #0003;
+		padding: 1em;
+	}
+	tr {
+		border-bottom: 10px solid black;
+		/*padding: 0em 0em 1em 0.5em;*/
+	}
+	td > * {
+		margin: 0.5em;
+	}
+</style>
