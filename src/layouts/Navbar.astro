@@ -6,8 +6,8 @@
 <nav class="navbar">
 	<a href="/"><img src="CommunistPartyofCanadalogo_2018.png" draggable="false" height="75rem"></a>
 	<ul>
-		<li><button><a href="blog">Blog</a></button></li>
-		<li><button><a href="knjige">Knjige</a></button></li>
+		<li><a href="blog"><button>Blog</button></a></li>
+		<li><a href="knjige"><button>Knjige</button></a></li>
 		<li><button>bruh moment</button></li>
 		<li><button>bruh moment that is very long</button></li>
 		<li><button>bruh moment</button></li>
@@ -20,12 +20,12 @@
 		padding: 0.5rem;
 		list-style: none;
 	}
-	button{
+	button {
 		font-size: 0.9rem;
 		color: var(--link);
 		border: 1px solid #aaa2;
 		border-radius: 0.25em;
-		background-color: #710318;
+		background-color: var(--bg-b);
 		width: 100%;
 	}
 	li {
@@ -33,6 +33,7 @@
 		padding: 0.25em;
 		text-align: center;
 	}
+	
 	a {
 		color: var(--link);
 		text-decoration: none;
@@ -44,7 +45,7 @@
 		position: absolute;
 		height: calc(100vh - 1rem);
 		float: right;
-		background-color: #251019;
+		background-color: var(--bg-navbar);
 	}
 	img {
 		margin-top: 1rem;
