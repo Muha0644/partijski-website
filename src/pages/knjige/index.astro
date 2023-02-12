@@ -1,37 +1,25 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PocketBase from 'pocketbase';
+const pb = new PocketBase('http://127.0.0.1:8090');
 
-interface book{
-	title:string,
-	authors:string,
-	desc:string,
-	link:string
-}
+const booklist = await pb.collection('knjige').getList(1, 50, {expand: "tagovi"});
 
-// garant ću koristiti graphql, ali sad za sad placeholder dok backend ne bude radio
-//var booklist = await fetch("placeholder").then(res => res.json())
-const booklist:Array<book> = [
-	{title: "Towards a New Socialism",
-		authors: "W. P. Cockshott, A. Cottrell",
-		desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero dolor,sodales non lectus ac, vehicula pretium nibh. Quisque vitae erat nunc. Fusce faucibus sem quam, et blandit nisl sollicitudin sagittis.",
-		link: "//"},
-	{title: "Kapital",
-		authors: "K. Marx, F. Engels",
-		desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero dolor, sodales non lectus ac, vehicula pretium nibh. Quisque vitae erat nunc. Fusce faucibus sem quam, et blandit nisl sollicitudin sagittis.",
-		link: "//"}
-	]
 ---
 
 <Layout title="Knjige">
 	<main>
 		<table>
-			{booklist.map( (book) =>
+			{booklist.items.map((book) =>
 				<tr>
 					<td>
-						<h4><bold>{book.title}</bold> - ({book.authors})</h4>
-						<p>{book.desc}</p>
+						<h4><bold>{book.naslov}</bold> - ({book.autor})</h4>
+						<p>{book.opis}</p>
 					</td>
-					<td><a href={book.link}>Download</a></td>
+					<td style="display: flex; flex-direction: column; align-items: center;">{book.fajl.map((path:string) =>
+							<a href={path}>[{path.match("(\.[^.]+)$")[0]}]</a>
+						)}
+					</td>
 				</tr>)}
 		</table>
 	</main>
@@ -40,7 +28,8 @@ const booklist:Array<book> = [
 <style>
 	a {
 		padding: 0em 1em;
-		color: var(--link)
+		color: var(--link);
+		text-decoration: none;
 	}
 	h4 {
 		color: var(--title);
