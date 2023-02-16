@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('http://bosnaponosna.duckdns.org:1917');
 
 const booklist = await pb.collection('knjige').getList(1, 50, {expand: "tagovi"});
 
