@@ -17,7 +17,9 @@ const booklist = await pb.collection('knjige').getList(1, 50, {expand: "tagovi"}
 						<h4><bold>{book.naslov}</bold> - ({book.autor})</h4>
 						<div class="link">
 							{book.fajl.map((path:string) =>
-								<a href={"http://bosnaponosna.duckdns.org/"+path}>[{path.match("(\.[^.]+)$")[0]}]</a>
+								<a href={`${pb.baseUrl}/api/files/${book.collectionId}/${book.id}/${path}`}>
+									[{path.match("(\.[^.]+)$")[0]}]
+								</a>
 							)}
 						</div>
 					</div>
