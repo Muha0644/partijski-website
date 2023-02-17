@@ -10,45 +10,57 @@ const booklist = await pb.collection('knjige').getList(1, 50, {expand: "tagovi"}
 <Layout title="Knjige">
 	<main>
 		<h1> Knjige</h1>
-		<table>
+		<div class="table">
 			{booklist.items.map((book) =>
-				<tr>
-					<td>
+				<div class="row">
+					<div class="head">
 						<h4><bold>{book.naslov}</bold> - ({book.autor})</h4>
-						<p>{book.opis}</p>
-					</td>
-					<td style="display: flex; flex-direction: column; align-items: center;">{book.fajl.map((path:string) =>
-							<a href={"http://bosnaponosna.duckdns.org/"+path}>[{path.match("(\.[^.]+)$")[0]}]</a>
-						)}
-					</td>
-				</tr>)}
-		</table>
+						<div class="link">
+							{book.fajl.map((path:string) =>
+								<a href={"http://bosnaponosna.duckdns.org/"+path}>[{path.match("(\.[^.]+)$")[0]}]</a>
+							)}
+						</div>
+					</div>
+					<p>{book.opis}</p>
+				</div>)}
+		</div>
 	</main>
 </Layout>
 
 <style>
 	a {
-		padding: 0em 1em;
+		margin: 0em 2em;
 		color: var(--link);
 		text-decoration: none;
 	}
 	h4 {
 		color: var(--title);
+		margin-bottom: 0;
 	}
 	p {
+		margin-top: 0px;
 		font-size: 0.9em;
-		padding-left: 1em;
+		padding: 0em 1.5em;
 	}
-	table {
-		width: 100%;
+	.table {
 		background-color: var(--bg-a);
-		padding: 1em;
 	}
-	tr {
-		border-bottom: 10px solid black;
-		/*padding: 0em 0em 1em 0.5em;*/
+	.head {
+		display:flex;
+		flex-direction: row;
+		justify-content: space-between;
 	}
-	td > * {
-		margin: 0.5em;
+	.link {
+		padding: 1em 0em;
+		display: flex;
+		flex-direction: column;
+		place-items: center;
+	}
+	.row {
+		padding: 0em 1em;
+		padding-bottom: 1em
+	}
+	.row:nth-child(2) {
+		background-color: var(--bg-a2);
 	}
 </style>

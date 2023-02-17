@@ -2,18 +2,31 @@
 
 ---
 
+<>
+	<script>
+		document.querySelector(".menu").addEventListener("click", () => {
+			document.querySelector(".navbar").classList.toggle("focus");
+			document.querySelector(".navbar").classList.toggle("dim");
 
-<nav class="navbar">
-	<a href="/"><img src="CommunistPartyofCanadalogo_2018.png" draggable="false" height="75rem"></a>
-	<ul>
-		<li><a href="blog"><button>Blog</button></a></li>
-		<li><a href="knjige"><button>Knjige</button></a></li>
-		<li><button>bruh moment</button></li>
-		<li><button>bruh moment that is very long</button></li>
-		<li><button>bruh moment</button></li>
-		<li><button>bruh moment</button></li>
-	</ul>
-</nav>
+			let menu = document.querySelector(".menu");
+			menu.classList.toggle("focusmenu");
+			if(menu.innerHTML == "&gt;"){ menu.innerHTML = "&lt;";
+			} else { menu.innerHTML = "&gt;" };
+		});
+	</script>
+	<b class="menu">&gt</b>
+	<nav class="navbar">
+		<a href="/"><img src="CommunistPartyofCanadalogo_2018.png" draggable="false" height="75rem"/></a>
+		<ul>
+			<li><a href="blog"><button>Blog</button></a></li>
+			<li><a href="knjige"><button>Knjige</button></a></li>
+			<li><button>bruh moment</button></li>
+			<li><button>bruh moment that is very long</button></li>
+			<li><button>bruh moment</button></li>
+			<li><button>bruh moment</button></li>
+		</ul>
+	</nav>
+</>
 
 <style>
 	ul {
@@ -33,21 +46,56 @@
 		padding: 0.25em;
 		text-align: center;
 	}
-	
 	a {
 		color: var(--link);
 		text-decoration: none;
 	}
 	.navbar {
+		z-index: 2;
 		text-align: center;
-		width: 10rem;
+		width: clamp(8rem, 15vw, 12rem);
 		border-radius: 0.25em;
-		position: absolute;
+		position: fixed;
 		height: calc(100vh - 1rem);
 		float: right;
 		background-color: var(--bg-navbar);
+		transition: 0.5s;
 	}
 	img {
 		margin-top: 1rem;
+	}
+	.menu {
+		top: 2rem;
+		display: none;
+		position: fixed;
+		color: white;
+		font-size: 2rem;
+		background: var(--bg-navbar);
+		border-radius: 0.2em;
+		padding: 0.25em;
+		/*Ok, vidi: ovo radi, i to je sve što je bitno.*/
+		margin-left: calc(clamp(50px, 30vw, calc(100vw - 11.5ch)) / 2 - 1ch);
+		transition: 0.5s;
+	}
+	@media screen and (max-width: 500px) {
+		.navbar {
+			translate: -100vw;
+			transition: 0.5s;
+			width: 50vw;
+		}
+		.focus {
+			translate: 0px;
+		}
+		.menu {
+			display: block;
+		}
+		.focusmenu {
+			z-index: 3;
+			translate: 60vw;
+			transition: 0.5s;
+		}
+		.dim {
+			box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+		}
 	}
 </style>

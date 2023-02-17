@@ -54,7 +54,6 @@ import Card from "@components/Card.astro";
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
-		color: var(--title);
 	}
 	img {
 		border: 20px, solid, white;
@@ -89,8 +88,14 @@ import Card from "@components/Card.astro";
 	}
 	.link-card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+
+	@media screen and (max-width: 500px) {
+		.annotation {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

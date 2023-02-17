@@ -9,28 +9,30 @@ const resultList = await pb.collection('blogovi').getList(1, 50, {expand: "autor
 
 <Layout title="Blog">
 	<main>
-		{resultList.items.map((blog) => (
-				<div class="blog">
+		<h1>Blog</h1>
+		<div class="blog">
+			{resultList.items.map((blog) => (
+				<div class="post">
 					<h2>{blog.naslov}</h2><h4>{(blog.expand.autor as any).name} {blog.created}</h4>
 					{blog.tekst}
 				</div>
 			))}
+		</div>
 	</main>
 </Layout>
 <style>
-	main {
+	.blog {
 		width: 100%;
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		/* RAM - repeat auto minmax - da bude responsive */ 
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	}
-	.blog {
+	.post {
 		background-color: var(--bg);
 		padding: 1em;
 		border-radius: 0.2em;
 		transition: 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
 	}
-	.blog:hover{
+	.post:hover{
 		background-color: var(--focus);
 		transition: 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
 	}
